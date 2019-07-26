@@ -1,0 +1,8 @@
+package com.codingsaint.microservices.model;
+
+public class UserTask {
+	
+	private User user;
+	private List<Task>tasks;
+
+}
