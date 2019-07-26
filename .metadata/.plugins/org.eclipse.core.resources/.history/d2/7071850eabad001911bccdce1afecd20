@@ -1,0 +1,9 @@
+package com.codingsaint.microservices.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.codingsaint.microservices.model.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+}

@@ -1,0 +1,5 @@
+package com.codingsaint.microservices.model;
+
+public class Category {
+
+}
