@@ -1,0 +1,10 @@
+package com.codingsaint.microservices.services;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+
+@Service
+@FeignClient(name="task-service" ,url="http://localhost:8083/")
+public interface TaskService {
+
+}

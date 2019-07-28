@@ -21,6 +21,7 @@ import com.codingsaint.microservices.model.Task;
 import com.codingsaint.microservices.model.User;
 import com.codingsaint.microservices.model.UserTask;
 import com.codingsaint.microservices.repository.UserRepository;
+import com.codingsaint.microservices.services.TaskService;
 
 @RestController
 @RequestMapping("v1")
@@ -30,10 +31,11 @@ public class UserController {
 
 	private UserRepository userRepository;
 	private RestTemplate restTemplate;
-
-	UserController(UserRepository userRepository, RestTemplate restTemplate) {
+	private TaskService taskService;
+	UserController(UserRepository userRepository, RestTemplate restTemplate,TaskService taskService) {
 		this.userRepository = userRepository;
 		this.restTemplate = restTemplate;
+		this.taskService=taskService;
 	}
 
 	@PostMapping("user")
@@ -53,13 +55,14 @@ public class UserController {
 		Optional<User> user = userRepository.findById(id);
 		if (user.isPresent()) {
 			logger.info("User found {}", user);
-			ResponseEntity<List<Task>> tasks = 
+		 /*	ResponseEntity<List<Task>> tasks = 
 					restTemplate.exchange("http://localhost:8083/user/" + id + "/tasks",
 					HttpMethod.GET, 
 					null,
 					new ParameterizedTypeReference<List<Task>>() {
 					});
-
+					*/
+			ResponseEntity<List<Task>> tasks =taskService.userTasks(id);
 			return new ResponseEntity<UserTask>(
 					new UserTask(user.get(),
 							tasks.getBody()), HttpStatus.OK);
