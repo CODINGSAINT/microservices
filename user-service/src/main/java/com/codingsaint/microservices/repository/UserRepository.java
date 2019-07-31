@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.codingsaint.microservices.model.User;
 
-@Repository
+@Repository 
 @RestResource
 public interface UserRepository extends JpaRepository<User, Long> {
 

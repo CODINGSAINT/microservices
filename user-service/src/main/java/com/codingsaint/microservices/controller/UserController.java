@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.codingsaint.microservices.model.Task;
+import com.codingsaint.microservices.model.Task ;
 import com.codingsaint.microservices.model.User;
 import com.codingsaint.microservices.model.UserTask;
 import com.codingsaint.microservices.repository.UserRepository;
@@ -61,7 +59,7 @@ public class UserController {
 					null,
 					new ParameterizedTypeReference<List<Task>>() {
 					});
-					*/
+					*/ 
 			ResponseEntity<List<Task>> tasks =taskService.userTasks(id);
 			return new ResponseEntity<UserTask>(
 					new UserTask(user.get(),
