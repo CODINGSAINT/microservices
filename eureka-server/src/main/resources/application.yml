@@ -1,0 +1,8 @@
+server:
+  port: 8761
+  
+spring:
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: false
