@@ -5,7 +5,119 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-07-30T19:41:18Z</updated>
+  <updated>2019-08-02T20:21:40Z</updated>
+  <entry>
+    <title>Spring Boot for Apache Geode &amp; Pivotal GemFire 1.1.0.RC1 Released!</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/08/02/spring-boot-for-apache-geode-pivotal-gemfire-1-1-0-rc1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>John Blum</name>
+    </author>
+    <id>tag:spring.io,2019-08-02:3757</id>
+    <updated>2019-08-02T20:21:40Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;It is my pleasure to announce the release of &lt;em&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire/Pivotal Cloud Cache&lt;/em&gt; (SBDG) &lt;code&gt;1.1.0.RC1&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This is the 1st of 2 release candidates before the &lt;strong&gt;final GA&lt;/strong&gt;, tentatively scheduled for &lt;strong&gt;Wednesday, August 14th, 2019&lt;/strong&gt;.  Be on the lookout for the SBDG 1.1.0.RELEASE then.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;You make acquire the new SBDG &lt;code&gt;1.1.0.RC1&lt;/code&gt; bits from Spring&amp;#8217;s &lt;code&gt;libs-milestone&lt;/code&gt; repo &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/geode/spring-geode-starter/1.1.0.RC1/"&gt;here&lt;/a&gt;, or by declaring the following dependency declaration in your Maven POM:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="title"&gt;Maven Dependency&lt;/div&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;org.springframework.geode&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;spring-geode-starter&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;1.1.0.RC1&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="whats-new"&gt;&lt;a class="anchor" href="#whats-new"&gt;&lt;/a&gt;What&amp;#8217;s New&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The theme of the 1.1.x release line has once again been focused on developer productivity using the amazing power of Spring Boot combined with effective use of Apache Geode.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;One of the easiest, quickest ways to get started using modern, &lt;strong&gt;Cloud-Native Data Access Technologies&lt;/strong&gt; (and patterns) in your enterprise application architecture is to start by leveraging Apache Geode as a &lt;em&gt;caching provider&lt;/em&gt; in &lt;a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#cache"&gt;Spring&amp;#8217;s Cache Abstraction&lt;/a&gt;.  It is truly the least invasive approach to introducing a modern, scalable data stack, like Apache Geode, in your enterprise application architecture.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Indeed, caching is a very powerful design pattern allowing you to make more effective use of system resources and prolong the life of legacy data management systems (e.g. RDBMS).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In the &lt;code&gt;1.1.0.RC1&lt;/code&gt; release, we include a &lt;strong&gt;new&lt;/strong&gt; &lt;a href="https://docs.spring.io/spring-boot-data-geode-build/1.1.x/reference/html5/guides/caching-inline.html"&gt;Sample&lt;/a&gt; that builds on the &lt;em&gt;Look-Aside Cache&lt;/em&gt; pattern and introduces you &lt;strong&gt;&lt;em&gt;Inline Caching&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock tip"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Tip&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Of course, if you have not done so already, you should first read the &lt;a href="https://docs.spring.io/spring-boot-data-geode-build/1.1.x/reference/html5/guides/caching-look-aside.html"&gt;Guide&lt;/a&gt; on &lt;strong&gt;&lt;em&gt;Look-Aside Caching&lt;/em&gt;&lt;/strong&gt;.  It includes &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/tree/1.1.0.RC1/spring-geode-samples/caching/look-aside"&gt;example code&lt;/a&gt; as well.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="whats-next"&gt;&lt;a class="anchor" href="#whats-next"&gt;&lt;/a&gt;What&amp;#8217;s Next&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Since we are focused on the topic of caching in the &lt;code&gt;1.1.x&lt;/code&gt; release series, we will round out our discussion on caching by talking about one more caching design pattern&amp;#8230;&amp;#8203; &lt;strong&gt;&lt;em&gt;Near Caching&lt;/em&gt;&lt;/strong&gt; in the 1.1.0.RC2 release, coming up next.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Finally, in the 1.1 GA, we will talk about a common Use Case for caching, HTTP Session state caching, and how &lt;a href="https://spring.io/projects/spring-session"&gt;Spring Session&lt;/a&gt; makes short work of that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="feedback"&gt;&lt;a class="anchor" href="#feedback"&gt;&lt;/a&gt;Feedback&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;As always, we want to hear from you on how we are doing.  Your feedback is highly important in helping us shape the product to help you achieve your desired outcomes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Also don&amp;#8217;t forget &lt;a href="https://springoneplatform.io/"&gt;SpringOne Platform 2019&lt;/a&gt; is just around the corner. Don&amp;#8217;t miss out!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-boot-data-geode/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/pulls"&gt;PR&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-boot"&gt;StackOverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Framework 5.1.9, 5.0.15 and 4.3.25 available now</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/08/02/spring-framework-5-1-9-5-0-15-and-4-3-25-available-now" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Stéphane Nicoll</name>
+    </author>
+    <id>tag:spring.io,2019-08-02:3756</id>
+    <updated>2019-08-02T11:10:17Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;5.1.9&lt;/code&gt;, &lt;code&gt;5.0.15&lt;/code&gt;, and &lt;code&gt;4.3.25&lt;/code&gt; are available now.&lt;/p&gt;
+&lt;p&gt;Spring Framework &lt;code&gt;5.1.9&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.1.9.RELEASE"&gt;38 fixes and improvements&lt;/a&gt; and is a recommended upgrade for all 5.x users. Spring Framework &lt;code&gt;5.0.15&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.0.15.RELEASE"&gt;16 selected fixes&lt;/a&gt; while Spring Framework &lt;code&gt;4.3.25&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v4.3.25.RELEASE"&gt;10 selected fixes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Next up is Spring Framework 5.2 RC1 coming up early next week followed by the usual Spring Boot releases, stay tuned!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/5.1.9.RELEASE/spring-framework-reference"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
+  <entry>
+    <title>A Bootiful Podcast: Gradle Developer Advocate Jenn Strater</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/08/02/a-bootiful-podcast-gradle-developer-advocate-jenn-strater" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2019-08-02:3755</id>
+    <updated>2019-08-02T05:58:08Z</updated>
+    <content type="html">&lt;p&gt;Hi Spring fans! In today&amp;rsquo;s installment, &lt;a href="http://twitter.com/Starbuxman"&gt;Josh Long (@starbuxman)&lt;/a&gt; talks to Gradle Developer Advocate &lt;a href="http://twitter.com/codeJENNerator"&gt;Jenn Strater (@codeJENNerator)&lt;/a&gt; about Gradle, Groovy, Spring REST Docs, and so much more.&lt;/p&gt;
+&lt;iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/659985764&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"&gt;&lt;/iframe&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>This Week in Spring - July 30, 2019</title>
     <link rel="alternate" href="https://spring.io/blog/2019/07/30/this-week-in-spring-july-30-2019" />
@@ -715,87 +827,6 @@ Stopping registry ... done
 &lt;p&gt;By using these &amp;lsquo;logical&amp;rsquo; server names, the Gateway can use the Registry to discover the true location of these services at runtime.&lt;/p&gt;&lt;h2&gt;&lt;a href="#wrapping-up" class="anchor" name="wrapping-up"&gt;&lt;/a&gt;Wrapping Up&lt;/h2&gt;
 &lt;p&gt;With the entire Spring toolkit at your disposal, it quickly becomes apparent how flexible and powerful Spring Cloud Gateway can be. If you dig into &lt;a href="https://github.com/benwilcock/spring-cloud-gateway-demo.git"&gt;the source code&lt;/a&gt;, you’ll notice that with just a few lines of Java and a few dependencies, we can easily integrate Spring Boot microservices with Eureka, and control access to our service’s APIs. &lt;/p&gt;
 &lt;p&gt;Before you finish, why not sign up for &lt;a href="https://springoneplatform.io/"&gt;SpringOne Platform 2019&lt;/a&gt; – the premier conference for building scalable applications that delight users. Join thousands of like-minded Spring developers to learn, share, and have fun in Austin, TX from October 7th to 10th. Use the discount code &lt;strong&gt;S1P_Save200&lt;/strong&gt; when registering to save money on your ticket. If you need help convincing your manager use &lt;a href="https://springoneplatform.io/2019/convince-your-manager"&gt;this page&lt;/a&gt;. See you there.&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud Open Service Broker 3.1.0.M1 Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/07/01/spring-cloud-open-service-broker-3-1-0-m1-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Roy Clarkson</name>
-    </author>
-    <id>tag:spring.io,2019-07-01:3736</id>
-    <updated>2019-07-01T16:56:28Z</updated>
-    <content type="html">&lt;p&gt;We are pleased to announce the 3.1.0.M1 release of Spring Cloud Open Service Broker. We are planning to include support for the recently released &lt;a href="https://www.openservicebrokerapi.org/blog/2019/06/21/announcing-open-service-broker-api-v2-15"&gt;Open Service Broker API v2.15&lt;/a&gt; within 3.1.0. This release includes all of the latest fixes and improvements from &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker/releases/tag/v3.0.3.RELEASE"&gt;3.0.3.RELEASE&lt;/a&gt;, as well as the following &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker/issues?q=is%3Aclosed+milestone%3A3.1.0.M1"&gt;enhancements&lt;/a&gt;:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Improve support for service metadata in configuration properties&lt;/li&gt;
-  &lt;li&gt;Add support for configuring Base64 &lt;code&gt;metadata.imageUrl&lt;/code&gt; data from a class path image file&lt;/li&gt;
-  &lt;li&gt;Improve configuration of event hooks via additional bean and auto-configuration support&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Include the following Spring Boot starter:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
-  &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-  &amp;lt;artifactId&amp;gt;spring-cloud-starter-open-service-broker&amp;lt;/artifactId&amp;gt;&#xD;
-  &amp;lt;version&amp;gt;3.1.0.M1&amp;lt;/version&amp;gt;&#xD;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Use the Spring Milestone Repository:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;repository&amp;gt;&#xD;
-  &amp;lt;id&amp;gt;spring-milestones&amp;lt;/id&amp;gt;&#xD;
-  &amp;lt;url&amp;gt;https://repo.spring.io/milestone&amp;lt;/url&amp;gt;&#xD;
-&amp;lt;/repository&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Spring Cloud Open Service Broker is a framework for building Spring Boot applications that implement the Open Service Broker API. The &lt;a href="https://www.openservicebrokerapi.org"&gt;Open Service Broker API&lt;/a&gt; project allows developers to deliver services to applications running within cloud native platforms such as Cloud Foundry, Kubernetes, and OpenShift.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-cloud-open-service-broker"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker"&gt;GitHub&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/3.1.0.M1/reference/html5"&gt;Reference Doc&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/3.1.0.M1/apidocs/"&gt;API Doc&lt;/a&gt; &lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud Open Service Broker 3.0.3 Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/07/01/spring-cloud-open-service-broker-3-0-3-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Roy Clarkson</name>
-    </author>
-    <id>tag:spring.io,2019-07-01:3735</id>
-    <updated>2019-07-01T16:51:30Z</updated>
-    <content type="html">&lt;p&gt;We are pleased to announce the 3.0.3 release of Spring Cloud Open Service Broker. This release includes the following &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker/issues?q=is%3Aclosed+milestone%3A3.0.3.RELEASE"&gt;updates&lt;/a&gt;:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Upgrade to Spring Boot 2.1.6.RELEASE&lt;/li&gt;
-  &lt;li&gt;Fix issue with Servlet API and Reactor transitive dependencies&lt;/li&gt;
-  &lt;li&gt;Return 404 when attempting to request a service instance binding for a service instance that does not exist&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Include the following Spring Boot starter:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
-  &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-  &amp;lt;artifactId&amp;gt;spring-cloud-starter-open-service-broker&amp;lt;/artifactId&amp;gt;&#xD;
-  &amp;lt;version&amp;gt;3.0.3.RELEASE&amp;lt;/version&amp;gt;&#xD;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Spring Cloud Open Service Broker is a framework for building Spring Boot applications that implement the Open Service Broker API. The &lt;a href="https://www.openservicebrokerapi.org"&gt;Open Service Broker API&lt;/a&gt; project allows developers to deliver services to applications running within cloud native platforms such as Cloud Foundry, Kubernetes, and OpenShift.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-cloud-open-service-broker"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker"&gt;GitHub&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/3.0.3.RELEASE/reference/html5"&gt;Reference Doc&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/3.0.3.RELEASE/apidocs/"&gt;API Doc&lt;/a&gt; &lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Vault 2.1.3.RELEASE available</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/07/01/spring-vault-2-1-3-release-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Mark Paluch</name>
-    </author>
-    <id>tag:spring.io,2019-07-01:3734</id>
-    <updated>2019-07-01T09:35:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community, I&amp;#8217;d like to announce the availability of the Spring Vault service release 2.1.3 available from Maven Central.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This release ships with bug fixes and dependency version updates.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For a complete list of changes see the &lt;a href="http://docs.spring.io/spring-vault/docs/2.1.3.RELEASE/changelog.txt"&gt;changelog&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-vault/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-vault/docs/2.1.3.RELEASE/reference/html/"&gt;Documentation for 2.1.3.RELEASE&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-vault"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>

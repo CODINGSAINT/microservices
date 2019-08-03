@@ -45,4 +45,5 @@
 <fullyQualifiedTypeName name="com.codingsaint.microservices.services.TaskService"/>
 <fullyQualifiedTypeName name="org.springframework.cloud.netflix.ribbon.RibbonClient"/>
 <fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.server.EnableEurekaServer"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.zuul.EnableZuulProxy"/>
 </qualifiedTypeNameHistroy>

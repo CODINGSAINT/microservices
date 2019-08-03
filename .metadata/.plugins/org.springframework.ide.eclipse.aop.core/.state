@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="config-server"/>
 <aop-project name="eureka-server"/>
 <aop-project name="user-service"/>
 <aop-project name="task-service"/>
