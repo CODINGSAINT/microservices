@@ -2,7 +2,11 @@
 <aop-reference-model>
 <aop-project name="config-server"/>
 <aop-project name="eureka-server"/>
-<aop-project name="user-service"/>
+<aop-project name="user-service">
+<aspect-definition advice-class-name="com.netflix.hystrix.contrib.javanica.aop.aspectj.HystrixCommandAspect" advice-method-name="methodsAnnotatedWithHystrixCommand(org.aspectj.lang.ProceedingJoinPoint)" advice-type="AROUND" aspect-end-line-number="-1" aspect-name="hystrixCommandAspect" aspect-start-line-number="-1" factory-id="org.springframework.ide.eclipse.aop.core.annotationAspectDefinitionElementFactory" file="/user-service/src/main/java/com/codingsaint/microservices/UserServiceApplication.java" pointcut-expression="hystrixCommandAnnotationPointcut() || hystrixCollapserAnnotationPointcut()" proxy-target-class="true">
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:user-service|3:java:com.codingsaint.microservices.UserServiceApplication|8:userController:28" bean-file="/user-service/src/main/java/com/codingsaint/microservices/controller/UserController.java" bean-start-line="28" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/user-service/src/main/java/com/codingsaint/microservices/UserServiceApplication.java" source="=user-service/\/home\/pallav\/.m2\/repository\/com\/netflix\/hystrix\/hystrix-javanica\/1.5.18\/hystrix-javanica-1.5.18.jar&lt;com.netflix.hystrix.contrib.javanica.aop.aspectj(HystrixCommandAspect.class[HystrixCommandAspect~methodsAnnotatedWithHystrixCommand~Lorg.aspectj.lang.ProceedingJoinPoint;" source-start-line="-1" target="=user-service/src\/main\/java&lt;com.codingsaint.microservices.controller{UserController.java[UserController~userTasks~QLong;" target-start-line="55"/>
+</aspect-definition>
+</aop-project>
 <aop-project name="task-service"/>
 <aop-project name="api-gateway"/>
 </aop-reference-model>
