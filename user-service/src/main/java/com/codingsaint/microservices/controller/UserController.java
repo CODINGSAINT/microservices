@@ -1,5 +1,6 @@
 package com.codingsaint.microservices.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import com.codingsaint.microservices.model.User;
 import com.codingsaint.microservices.model.UserTask;
 import com.codingsaint.microservices.repository.UserRepository;
 import com.codingsaint.microservices.services.TaskService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("v1")
@@ -49,6 +51,7 @@ public class UserController {
 	}
 
 	@GetMapping("user/{id}/tasks")
+	@HystrixCommand(commandKey = "userTasks", fallbackMethod = "userTasksFallback")
 	public ResponseEntity<?> userTasks(@PathVariable("id") Long id) {
 		Optional<User> user = userRepository.findById(id);
 		if (user.isPresent()) {
@@ -68,5 +71,10 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	public ResponseEntity<?> userTasksFallback(@PathVariable("id") Long id) {
+		return new ResponseEntity<ArrayList>(new ArrayList(), HttpStatus.OK);
+	}
+		
+	
 
 }

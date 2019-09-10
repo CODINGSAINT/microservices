@@ -4,4 +4,5 @@
 <aop-project name="eureka-server"/>
 <aop-project name="user-service"/>
 <aop-project name="task-service"/>
+<aop-project name="api-gateway"/>
 </aop-reference-model>
