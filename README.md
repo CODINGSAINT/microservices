@@ -12,7 +12,8 @@ The new buzzword in industry is  **microservices**. This repository is the sourc
  - User Service
  - ToDo Service
  - Feign Declarative REST Client
- -  Service Discovery in Microservices
+ - Ribbon Load Balancer
+ -  Service Discovery in Microservices using Eureka
  -  Use of Config Server
  -  Zuul API gateway
  -  Distributed Tracing
@@ -93,21 +94,75 @@ This microservice will help us to create user and call another microservice i.e.
 User service in this tutorial runs on port **8082**.
 ### Important APIs of User Service
  
-NAME| URL |  BODY| METHOD TYPE| RESPONSE
-|--|--|--|--|--|--|
-CREATE USER | http://localhost:8082/v1/user | ``{"firstName":"Ray","lastName":"mcfallen",	"userName":"ray","email":"ray@codingsaint.com"} ``  |POST |``{'id':2,"firstName":"Ray","lastName":"mcfallen",	"userName":"ray","email":"ray@codingsaint.com"} ``
-GET USER WITH TASK | http://localhost:8082/v1/user/2/tasks |  |GET |``{"firstName":"Ray","lastName":"mcfallen",	"userName":"ray","email":"ray@codingsaint.com"} ``
+#### Create User
+ URL :  http://localhost:8082/v1/user 
+METHOD TYPE: POST
+Request Body :
+```{
+  "firstName":"Ray",
+  "lastName":"mcfallen",	
+   "userName":"ray",
+  "email":"ray@codingsaint.com"
+} 
+```
+Response Body:
+```
+{
+'id':2,
+"firstName":"Ray",
+"lastName":"mcfallen",	
+"userName":"ray",
+"email":"ray@codingsaint.com"
+}
+```
+#### Get User With tasks
+ URL :  http://localhost:8082/v1/user/2/tasks
+METHOD TYPE: GET
+Response Body
+```
 
+```
 
 ## TODO Service
 ToDo Service will be used to create task for users, It create task and assign it to particular user based on user id.
 
 ### Important APIs of User Service
  
-NAME| URL |  BODY| METHOD TYPE| RESPONSE
-|--|--|--|--|--|--|
-CREATE TASK | http://localhost:8083/task | `` { "name":"Create Micoservice Couse : Config Server", "description":"Create Video tutorial task service",   "isDone":false,   "targetDate":"2019-08-05",   "userId":2,   "categories":[      {"name":"Microservice Tutorial"}]} ``  |POST |``{ "id":2,"name":"Create Micoservice Couse : Config Server", "description":"Create Video tutorial task service",   "isDone":false,   "targetDate":"2019-08-05",   "userId":2,   "categories":[      {"name":"Microservice Tutorial"}]} ``
-GET Tasks of a User | http://localhost:8083/user/2/tasks |  |GET |``{ "id":2,"name":"Create Micoservice Couse : Config Server", "description":"Create Video tutorial task service",   "isDone":false,   "targetDate":"2019-08-05",   "userId":2,   "categories":[      {"name":"Microservice Tutorial"}]} ``
+#### Create Task
+ URL :  http://localhost:8083/task
+METHOD TYPE: POST
+Request Body :
+```
+{ 
+"name":"Create Micoservice Couse : Config Server", 
+"description":"Create Video tutorial task service",   
+"isDone":false, 
+  "targetDate":"2019-08-05", 
+    "userId":2, 
+      "categories":[   
+         {"name":"Microservice Tutorial"
+         }
+         ]
+}  
+```
+Response Body:
+```
+{ 
+"id":2,
+"name":"Create Micoservice Couse : Config Server", 
+"description":"Create Video tutorial task service",   
+"isDone":false, 
+  "targetDate":"2019-08-05", 
+    "userId":2, 
+      "categories":[   
+         {"name":"Microservice Tutorial"
+         }
+         ]
+}
+```
+#### Get  tasks of a User
+ URL :  http://localhost:8083/user/2/tasks
+METHOD TYPE: GET
 
 ## Feign Declarative REST Client
 
@@ -115,18 +170,18 @@ Feign Declarative REST client helps us to remove boilerplate code of REST API.
 We will use it in **User Service**  to remove rest call to task service where we had been using rest template.
 In order to do that 
 
- 1. add openfeign at pom.xml
+ - add openfeign at pom.xml
 ```
 <dependency>
   <groupId>org.springframework.cloud</groupId>
   <artifactId>spring-cloud-starter-openfeign</artifactId>
 </dependency>
 ```
- 2. Add annotation at User application main class
+ - Add annotation at User application main class
  ```
  @EnableFeignClients
  ```
-3. Create a Service class with annotation @FeignClient and method for Feign as below
+ - Create a Service class with annotation @FeignClient and method for Feign as below
 ```
 @Service
 @FeignClient(name="task-service" ,url="http://localhost:8083/")
@@ -135,8 +190,157 @@ public interface TaskService {
 ResponseEntity<List<Task> > userTasks(@PathVariable ("id") Long userId);
 }
 ```
- 4. Remove Rest call at Controller and user TaskService method
+ - Remove Rest call at Controller and user TaskService method
  ```
 ResponseEntity<List<Task>> tasks =taskService.userTasks(id);
  ```
+ ## Ribbon Load Balancer
+ Load balancing is important factor when communicating between multiple microservices. 
+ In our example We will be running 2 instances of Todo Service and 1 User Service , We will add **ribbon** at user service toload balance Todo service calls.
+ Steps to add Ribbon load balancer.
  
+ - Add Ribbon dependency
+ ```
+ <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+</dependency>
+ ```
+ - Modify TaskService as below. Notice that FeignClient with URL is commented , its just for your reference ,it can be removed
+```
+@Service
+//@FeignClient(name="task-service" ,url="http://localhost:8083/")
+@FeignClient(name="task-service" )
+@RibbonClient(name="task-service")
+public interface TaskService {
+	@RequestMapping("user/{id}/tasks")
+	ResponseEntity<List<Task> > userTasks(@PathVariable ("id") Long userId);
+}
+```
+ - Now add List of servers for Task Service at application.yml
+```
+task-service:
+  ribbon:
+    listOfServers: http://localhost:8083/,http://localhost:8085/
+```
+This will enable the task service instances to be picked from yaml file.
+### Service Discovery in Microservices using Eureka
+The problem with above approach is to define list of servers with every new instances coming up and down. We would certainly not want to do it as it will require to restart services after change in application.yml
+We can use Eureka Service discovery to avoid it. 
+#### Steps to create Eureka Service Discovery Server
+ - Go to https://start.spring.io
+ - Select Eureka as dependency and download the project
+ - Import project to IDE
+ - At Main class add `@EnableEurekaServer` annotation.
+ - Add `server.port =8761` to start at different port.
+#### Connecting clients to Eureka for discovery
+At User service and Task service pom
+ - Add dependency for Eureka client
+ ```
+ <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>
+				spring-cloud-starter-netflix-eureka-client
+			</artifactId>
+</dependency>
+ ```
+ - Add Eureka server location to connect at application.yml
+```
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  
+```
+### Use of Config Server
+To manage configuration of different services effectively we use config server. Config server is a separate microservice which keeps track of configurations.
+#### Steps to create config server
+ - Go to https://start.spring.io
+ - Select config server as dependency and download the project
+ - Import project to IDE
+ - At Main class add `@EnableConfigServer` annotation.
+ - Add `server.port =9000` to start at different port.
+ - Create another git project and add configuration files to it. For example user service should have a file names user-service.yml and task-service should have a file named task-service.yml
+ - Add location of git in application.yml of config-server
+```
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/CODINGSAINT/config.git
+  application:
+    name: config-server
+```
+#### Connecting clients to Config server
+At User service and Task service pom
+ - Add dependency for config client
+ ```
+ <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+ ```
+ - Create a file bootstrap.yml and add config server location to connect at bootstrap.yml
+```
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      uri: 
+        - http://localhost:9000 
+```
+*Now at start up services will connect to config server to get there configurations.*
+
+ ### Zuul API gateway
+ Different microservices will have different ports and many times we require to perform operations (filters) before these incoming requests even hit our services. 
+ To perform better operations for incoming request we will add a gateway . We call it Zuul API gateway in our case.
+ #### Create API gateway 
+  - Go to https://start.spring.io
+ - Select Zuul API gateway as dependency and download the project
+ - Import project to IDE
+ - At Main class add `@@EnableZuulProxy` annotation.
+ - create file bootstrap.yml and delete application.yml
+ - Add below configuration for it 
+ ```
+ spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      uri: 
+        - http://localhost:9000
+ ```
+  - Create file named api-gateway.yml and commit at config git project created above
+  - Below are content for api-gateway.yml
+  ```
+  spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      uri: 
+        - http://localhost:9000
+        
+zuul:
+  prefix: /api
+  routes:
+    user-service:
+      path: /user-service/**
+      service-id: user-service
+    task-service:
+      path: /task-service/**
+      service-id: task-service
+      
+#Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka 
+  ``` 
+  In above configuration **routes** configurations will help us to add routes for different services.
+  To access URL of any service we can add service-name and hit postman for example to access user-service url for getting user-service and its respective task we can use
+  http://localhost:8080/user-service/v1/user/2/tasks
+  Where user service URL was
+  http://localhost:8082/v1/user/2/tasks
+  
