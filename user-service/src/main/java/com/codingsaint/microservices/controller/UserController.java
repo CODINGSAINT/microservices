@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("v1")
+@RefreshScope
 public class UserController {
 
 	Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -37,7 +40,9 @@ public class UserController {
 		this.restTemplate = restTemplate;
 		this.taskService=taskService;
 	}
-
+ 
+@Value("${application.version}")
+private String applicationVersion;
 	@PostMapping("user")
 	public User user(@RequestBody User user) {
 		logger.info("New User {}", user);
@@ -73,6 +78,10 @@ public class UserController {
 	}
 	public ResponseEntity<?> userTasksFallback(@PathVariable("id") Long id) {
 		return new ResponseEntity<ArrayList>(new ArrayList(), HttpStatus.OK);
+	}
+	@RequestMapping("application/version")
+	public String applicationVersion() {
+		return applicationVersion;
 	}
 		
 	
