@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import com.codingsaint.microservices.repository.CategoryRepository;
 import com.codingsaint.microservices.repository.TaskRepository;
 
 @RestController
+@RefreshScope
 public class TaskController {
 
 	private final Logger logger = LoggerFactory.getLogger(TaskController.class);
@@ -33,7 +36,13 @@ public class TaskController {
 		this.taskRepository = taskRepository;
 		this.categoryRepository = categoryRepository;
 	}
+	@Value("${application.version}")
+	private String applicationVersion;
 	
+	@GetMapping("application/version")
+	public String applicationVersion() {
+		return applicationVersion;
+	}
 	@PostMapping("task")
 	@Transactional
 	public ResponseEntity<Task> addTasks(@RequestBody Task task){
