@@ -12,10 +12,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codingsaint.microservices.model.Category;
@@ -31,10 +33,13 @@ public class TaskController {
 
 	private TaskRepository taskRepository;
 	private CategoryRepository categoryRepository;
+	private KafkaTemplate<String,String> kafkaTemplate;
+	
 
-	public TaskController(TaskRepository taskRepository, CategoryRepository categoryRepository) {
+	public TaskController(TaskRepository taskRepository, CategoryRepository categoryRepository,KafkaTemplate<String,String> kafkaTemplate) {
 		this.taskRepository = taskRepository;
 		this.categoryRepository = categoryRepository;
+		this.kafkaTemplate = kafkaTemplate;
 	}
 	@Value("${application.version}")
 	private String applicationVersion;
@@ -69,4 +74,12 @@ public class TaskController {
 		logger.info("Task for user id {}" ,userId);		
 		return taskRepository.findByUserId(userId);
 	}
+	
+	@PostMapping("send")
+	public ResponseEntity<?> send(@RequestParam ("message") String message){
+		kafkaTemplate.send("tasks",message);
+		return new ResponseEntity<>(HttpStatus.OK);
+		
+	}
+		
 }

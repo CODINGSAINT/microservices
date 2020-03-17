@@ -90,13 +90,5 @@ public class UserController {
 		return new ResponseEntity<ArrayList>(new ArrayList(), HttpStatus.OK);
 	}
 	
-	@PostMapping("send")
-	public ResponseEntity<?> send(@RequestParam ("message") String message){
-		kafkaTemplate.send("tasks",message);
-		return new ResponseEntity<>(HttpStatus.OK);
-		
-	}
-		
 	
-
 }

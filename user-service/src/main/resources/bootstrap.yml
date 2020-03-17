@@ -17,9 +17,6 @@ spring:
       - localhost:9092
     template:
       default-topic: tasks
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
      
 management:
   endpoint:
