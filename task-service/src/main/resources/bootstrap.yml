@@ -5,3 +5,15 @@ spring:
     config:
       uri: 
         - http://localhost:9000
+    stream:
+      default-binder: rabbit
+  kafka:
+    listener:
+      missing-topics-fatal: false
+    client-id : user-service
+    bootstrap-servers:
+      - localhost:9091
+      - localhost:9001
+      - localhost:9092
+    template:
+      default-topic: tasks

@@ -2,9 +2,22 @@ spring:
   application:
     name: user-service
   cloud:
+    stream:
+      default-binder: rabbit
     config:
       uri: 
         - http://localhost:9000
+  kafka:
+    listener:
+      missing-topics-fatal: false
+    client-id : user-service
+    bootstrap-servers:
+      - localhost:9091
+      - localhost:9001
+      - localhost:9092
+    template:
+      default-topic: tasks
+     
 management:
   endpoint:
     hystrix:
